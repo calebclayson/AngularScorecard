@@ -1,39 +1,19 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiGetterService } from '../api-getter.service';
 
 @Component({
-  selector: 'app-hole-card',
+  selector: 'app-hole',
   templateUrl: './hole.component.html',
   styleUrls: ['./hole.component.scss']
 })
 export class HoleComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiGetter: ApiGetterService) { }
+
+  holes = this.apiGetter.getCourses();
 
   ngOnInit() {
+    console.log(this.holes);
   }
-
-  holes = [
-    {
-      id: 1
-    },
-    {
-      id: 2
-    },
-    {
-      id: 3
-    },
-    {
-      id: 4
-    },
-    {
-      id: 5
-    },
-    {
-      id: 6
-    },
-    {
-      id: 7
-    }
-  ]
 
 }
