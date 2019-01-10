@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ApiGetterService } from '../api-getter.service';
 
 @Component({
   selector: 'app-course-select',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CourseSelectComponent implements OnInit {
 
-  constructor() { }
+  constructor(private apiGetter: ApiGetterService) { }
+
+  courses;
+
+  @Output() eventClicked = new EventEmitter<Event>();
 
   ngOnInit() {
+    this.apiGetter.getCourses().subscribe(res => {
+      this.courses = res.courses
+      console.log(this.courses);
+    });
+  }
+
+  eventActivated(event: Event) {
+    this.eventClicked.emit(event);
+    console.log(event);
   }
 
 }

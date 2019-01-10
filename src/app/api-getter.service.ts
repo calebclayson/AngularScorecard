@@ -7,33 +7,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ApiGetterService {
 
-  result: any;
-
   constructor(private http: HttpClient) {}
   private golfUrl = 'https://golf-courses-api.herokuapp.com/courses/';
 
   getCourses(): any {
-    let parent = this;
-    this.http.get(this.golfUrl).subscribe(
-      function(res) {
-        parent.setResult(res);
-      }
-    );
-    return this.result;
-
+    return this.http.get(this.golfUrl);
   }
 
   getCourseById(id: number): any {
-    let parent = this;
-    this.http.get(this.golfUrl + id).subscribe(
-      function(res) {
-        parent.setResult(res);
-      }
-    );
-    return this.result;
+    return this.http.get(this.golfUrl + id);
   }
 
-  setResult(res: any) {
-    this.result = res;
-  }
 }

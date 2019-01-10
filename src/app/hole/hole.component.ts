@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ApiGetterService } from '../api-getter.service';
 
 @Component({
@@ -10,10 +10,11 @@ export class HoleComponent implements OnInit {
 
   constructor(private apiGetter: ApiGetterService) { }
 
-  holes = this.apiGetter.getCourses();
+  holes = [{id: 1}];
+
+  @Input() event: Event;
 
   ngOnInit() {
-    console.log(this.holes);
   }
 
 }

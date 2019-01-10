@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Event } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-scorecard';
+
+    public clickedEvent: Event;
+
+    childEventClicked(event: Event) {
+      this.clickedEvent = event;
+    }
 }
