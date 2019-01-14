@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ApiGetterService } from '../api-getter.service';
+import { PasserService } from '../passer.service';
 
 @Component({
   selector: 'app-course-select',
@@ -8,11 +9,9 @@ import { ApiGetterService } from '../api-getter.service';
 })
 export class CourseSelectComponent implements OnInit {
 
-  constructor(private apiGetter: ApiGetterService) { }
-
   courses;
 
-  @Output() eventClicked = new EventEmitter<Event>();
+  constructor(private apiGetter: ApiGetterService, private passer: PasserService) { }
 
   ngOnInit() {
     this.apiGetter.getCourses().subscribe(res => {
@@ -21,9 +20,8 @@ export class CourseSelectComponent implements OnInit {
     });
   }
 
-  eventActivated(event: Event) {
-    this.eventClicked.emit(event);
-    console.log(event);
+  passCourse(id) {
+    this.passer.setCourseId(id);
   }
 
 }

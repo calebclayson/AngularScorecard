@@ -12,6 +12,7 @@ import { PlayerComponent } from './player/player.component';
 import { ApiGetterService } from './api-getter.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { PasserService } from './passer.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatSelectModule,
     MatOptionModule
   ],
-  providers: [ApiGetterService],
+  providers: [ApiGetterService, PasserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

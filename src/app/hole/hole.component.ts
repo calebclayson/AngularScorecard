@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 import { ApiGetterService } from '../api-getter.service';
+import { PasserService } from '../passer.service';
 
 @Component({
   selector: 'app-hole',
@@ -8,13 +9,15 @@ import { ApiGetterService } from '../api-getter.service';
 })
 export class HoleComponent implements OnInit {
 
-  constructor(private apiGetter: ApiGetterService) { }
+  holes: Object[];
 
-  holes = [{id: 1}];
-
-  @Input() event: Event;
+  constructor(private apiGetter: ApiGetterService, private passer: PasserService) { }
 
   ngOnInit() {
+    this.apiGetter.getCourseById(this.passer.getCourseId()).subscribe(res => {
+      this.holes = res.holes
+      console.log(this.holes);
+    });
   }
 
 }
