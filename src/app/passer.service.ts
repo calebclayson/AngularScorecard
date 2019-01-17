@@ -5,21 +5,16 @@ import { Injectable } from '@angular/core';
 })
 export class PasserService {
 
-  courseId: any;
-  courseBeenChosen: boolean;
+  details: any;
 
   constructor() { }
 
-  setCourseId(id: any) {
-    this.courseId = id;
+  setDetails(info) {
+    this.details = info;
   }
 
-  getCourseId() {
-    return this.courseId;
+  getDetails() {
+    return this.details;
   }
-
-  courseBeenChosenToggle() {
-    this.courseBeenChosen = !this.courseBeenChosen;
-  } 
 
 }

@@ -10,12 +10,14 @@ import { PasserService } from '../passer.service';
 export class HoleComponent implements OnInit {
 
   holes: Object[];
+  details = this.passer.getDetails();
 
   constructor(private apiGetter: ApiGetterService, private passer: PasserService) { }
 
   ngOnInit() {
-    this.apiGetter.getCourseById(this.passer.getCourseId()).subscribe(res => {
-      this.holes = res.holes
+    console.log(this.details);
+    this.apiGetter.getCourseById(this.details.courseId).subscribe(res => {
+      this.holes = res.data.holes;
       console.log(this.holes);
     });
   }
