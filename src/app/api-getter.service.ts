@@ -15,7 +15,6 @@ export class ApiGetterService {
   }
 
   getCourseById(id: number): any {
-    console.log(this.golfUrl + id);
     return this.http.get(this.golfUrl + id);
   }
 

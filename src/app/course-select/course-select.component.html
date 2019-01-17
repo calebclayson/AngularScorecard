@@ -4,7 +4,7 @@
       <mat-option *ngFor="let course of courses" [value]="course.id">{{course.name}}</mat-option>
     </mat-select>
     <mat-select name="tee" matSelect placeholder="Tee" required [(ngModel)]="model.tee" *ngIf="teeBoxes != undefined">
-      <mat-option *ngFor="let tee of teeBoxes" [value]="tee.teeTypeId - 1">{{tee.teeType}}</mat-option>
+      <mat-option *ngFor="let tee of teeBoxes;let i=index" [value]="i">{{tee.teeType}}</mat-option>
     </mat-select>
     <mat-select name="players" matSelect placeholder="Players" required [(ngModel)]="model.numPlayers" *ngIf="teeBoxes != undefined">
       <mat-option value="1">1</mat-option>

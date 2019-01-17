@@ -15,11 +15,16 @@ export class HoleComponent implements OnInit {
   constructor(private apiGetter: ApiGetterService, private passer: PasserService) { }
 
   ngOnInit() {
-    console.log(this.details);
     this.apiGetter.getCourseById(this.details.courseId).subscribe(res => {
       this.holes = res.data.holes;
-      console.log(this.holes);
     });
+  }
+
+  pushScore(e) {
+    var someText: string = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.children[0].innerText;
+    var index: number = Number(someText.slice(5)) - 1;
+    var playerIndex: number = Number(e.target.parentElement.parentElement.parentElement.parentElement.parentElement.className.slice(1,2)) - 1;
+    this.details.scores[playerIndex][index] = Number(e.target.value);
   }
 
 }
