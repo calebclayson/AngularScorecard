@@ -12,13 +12,18 @@ import { ApiGetterService } from './api-getter.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PasserService } from './passer.service';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { environment } from '../environments/environment';
+import { DuplicateNamesPipe } from './duplicate-names.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     HoleComponent,
     TotalComponent,
-    CourseSelectComponent
+    CourseSelectComponent,
+    DuplicateNamesPipe
   ],
   imports: [
     BrowserModule,
@@ -31,7 +36,9 @@ import { PasserService } from './passer.service';
     MatSelectModule,
     MatOptionModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule
   ],
   providers: [ApiGetterService, PasserService],
   bootstrap: [AppComponent]

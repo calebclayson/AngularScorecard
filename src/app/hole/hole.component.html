@@ -4,12 +4,13 @@
     <mat-card-subtitle>This hole is {{hole.teeBoxes[details.tee].yards}} yards</mat-card-subtitle>
     <mat-card-subtitle>{{hole.teeBoxes[details.tee].par}} is par</mat-card-subtitle>
     <mat-card-subtitle>{{hole.teeBoxes[details.tee].hcp}} is the handicap</mat-card-subtitle>
-    <div class="p1">{{details.playerNames[0]}}: <mat-form-field><input type="number" matInput (change)="pushScore($event)" /></mat-form-field></div>
-    <div class="p2" *ngIf="details.numPlayers > 1">{{details.playerNames[1]}}: <mat-form-field><input type="number" matInput (change)="pushScore($event)" /></mat-form-field></div>
-    <div class="p3" *ngIf="details.numPlayers > 2">{{details.playerNames[2]}}: <mat-form-field><input type="number" matInput (change)="pushScore($event)"/></mat-form-field></div>
-    <div class="p4" *ngIf="details.numPlayers > 3">{{details.playerNames[3]}}: <mat-form-field><input type="number" matInput (change)="pushScore($event)"/></mat-form-field></div>
+    <div class="p1">{{details.playerNames[0] | duplicateNames}}: <mat-form-field><input type="number" matInput (change)="pushScore($event)" /></mat-form-field></div>
+    <div class="p2" *ngIf="details.numPlayers > 1">{{details.playerNames[1] | duplicateNames}}: <mat-form-field><input type="number" matInput (change)="pushScore($event)" /></mat-form-field></div>
+    <div class="p3" *ngIf="details.numPlayers > 2">{{details.playerNames[2] | duplicateNames}}: <mat-form-field><input type="number" matInput (change)="pushScore($event)"/></mat-form-field></div>
+    <div class="p4" *ngIf="details.numPlayers > 3">{{details.playerNames[3] | duplicateNames}}: <mat-form-field><input type="number" matInput (change)="pushScore($event)"/></mat-form-field></div>
   </mat-card>
 </div>
 <mat-card class="finish">
+    <button mat-raised-button color="primary" (click)="saveData()">Save</button>
     <button routerLink="/total" mat-raised-button color="primary" >Finish</button>
 </mat-card>
