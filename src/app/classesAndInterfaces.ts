@@ -10,3 +10,11 @@ export class Details {
         [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     ];
 }
+
+export interface PlayerScore {
+    id: number;
+    total: number;
+    in: number;
+    out: number;
+    relToPar: number;
+}
