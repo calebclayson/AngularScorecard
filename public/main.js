@@ -389,18 +389,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DuplicateNamesPipe", function() { return DuplicateNamesPipe; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _passer_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./passer.service */ "./src/app/passer.service.ts");
+
 
 
 var DuplicateNamesPipe = /** @class */ (function () {
-    function DuplicateNamesPipe() {
+    function DuplicateNamesPipe(pass) {
+        this.pass = pass;
+        this.constantNumber = 1;
     }
     DuplicateNamesPipe.prototype.transform = function (value, args) {
-        return null;
+        var copyAry = [];
+        for (var i = 0; i < this.pass.getDetails().playerNames.length; i++) {
+            if (value == this.pass.getDetails().playerNames[i]) {
+                copyAry.push(i);
+            }
+        }
+        if (copyAry.length > 1) {
+            var name_1 = value;
+            for (var i = 0; i < this.constantNumber; i++) {
+                name_1 = name_1 + 'x';
+            }
+            this.constantNumber++;
+            return name_1;
+        }
+        else {
+            this.constantNumber++;
+            return value;
+        }
     };
     DuplicateNamesPipe = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Pipe"])({
             name: 'duplicateNames'
-        })
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_passer_service__WEBPACK_IMPORTED_MODULE_2__["PasserService"]])
     ], DuplicateNamesPipe);
     return DuplicateNamesPipe;
 }());
@@ -416,7 +438,7 @@ var DuplicateNamesPipe = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"hole-wrapper\">\n  <mat-card class=\"hole\" *ngFor=\"let hole of holes\">\n    <mat-card-title>Hole {{hole.hole}}</mat-card-title>\n    <mat-card-subtitle>This hole is {{hole.teeBoxes[details.tee].yards}} yards</mat-card-subtitle>\n    <mat-card-subtitle>{{hole.teeBoxes[details.tee].par}} is par</mat-card-subtitle>\n    <mat-card-subtitle>{{hole.teeBoxes[details.tee].hcp}} is the handicap</mat-card-subtitle>\n    <div class=\"p1\">{{details.playerNames[0]}}: <mat-form-field><input type=\"number\" matInput (change)=\"pushScore($event)\" /></mat-form-field></div>\n    <div class=\"p2\" *ngIf=\"details.numPlayers > 1\">{{details.playerNames[1]}}: <mat-form-field><input type=\"number\" matInput (change)=\"pushScore($event)\" /></mat-form-field></div>\n    <div class=\"p3\" *ngIf=\"details.numPlayers > 2\">{{details.playerNames[2]}}: <mat-form-field><input type=\"number\" matInput (change)=\"pushScore($event)\"/></mat-form-field></div>\n    <div class=\"p4\" *ngIf=\"details.numPlayers > 3\">{{details.playerNames[3]}}: <mat-form-field><input type=\"number\" matInput (change)=\"pushScore($event)\"/></mat-form-field></div>\n  </mat-card>\n</div>\n<mat-card class=\"finish\">\n    <button mat-raised-button color=\"primary\" (click)=\"saveData()\">Save</button>\n    <button routerLink=\"/total\" mat-raised-button color=\"primary\" >Finish</button>\n</mat-card>"
+module.exports = "<div class=\"hole-wrapper\">\n  <mat-card class=\"hole\" *ngFor=\"let hole of holes\">\n    <mat-card-title>Hole {{hole.hole}}</mat-card-title>\n    <mat-card-subtitle>This hole is {{hole.teeBoxes[details.tee].yards}} yards</mat-card-subtitle>\n    <mat-card-subtitle>{{hole.teeBoxes[details.tee].par}} is par</mat-card-subtitle>\n    <mat-card-subtitle>{{hole.teeBoxes[details.tee].hcp}} is the handicap</mat-card-subtitle>\n    <div class=\"p1\">{{details.playerNames[0] | duplicateNames}}: <mat-form-field><input type=\"number\" matInput (change)=\"pushScore($event)\" /></mat-form-field></div>\n    <div class=\"p2\" *ngIf=\"details.numPlayers > 1\">{{details.playerNames[1] | duplicateNames}}: <mat-form-field><input type=\"number\" matInput (change)=\"pushScore($event)\" /></mat-form-field></div>\n    <div class=\"p3\" *ngIf=\"details.numPlayers > 2\">{{details.playerNames[2] | duplicateNames}}: <mat-form-field><input type=\"number\" matInput (change)=\"pushScore($event)\"/></mat-form-field></div>\n    <div class=\"p4\" *ngIf=\"details.numPlayers > 3\">{{details.playerNames[3] | duplicateNames}}: <mat-form-field><input type=\"number\" matInput (change)=\"pushScore($event)\"/></mat-form-field></div>\n  </mat-card>\n</div>\n<mat-card class=\"finish\">\n    <button mat-raised-button color=\"primary\" (click)=\"saveData()\">Save</button>\n    <button routerLink=\"/total\" mat-raised-button color=\"primary\" >Finish</button>\n</mat-card>"
 
 /***/ }),
 
