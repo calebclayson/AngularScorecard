@@ -6,7 +6,7 @@ import { PasserService } from './passer.service';
 })
 export class DuplicateNamesPipe implements PipeTransform {
 
-
+  constantNumber = 4;
 
   constructor(private pass: PasserService) {}
 
@@ -19,8 +19,9 @@ export class DuplicateNamesPipe implements PipeTransform {
       }
     }
     for(let i = 0; i < copyAry.length; i++) {
-      for(let d = 0; d < copyAry[i]; d++) {
-        newName = newName + '+';
+      for(let d = 0; d < this.constantNumber; d++) {
+        newName = Math.floor(Math.random() * 100) + newName + this.constantNumber;
+        this.constantNumber--;
         copyAry.pop();
       }  
     }
