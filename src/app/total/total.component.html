@@ -4,4 +4,6 @@
   <h3 *ngIf="places.length > 1">Second place is {{details.playerNames[places[1].id]}} with {{(places[1].relToPar > 0) ? places[1].relToPar + " under par" : places[1].relToPar*-1 + " over par"}}</h3>
   <h3 *ngIf="places.length > 2">Third place is {{details.playerNames[places[2].id]}} with {{(places[2].relToPar > 0) ? places[2].relToPar + " under par" : places[2].relToPar*-1 + " over par"}}</h3>
   <h3 *ngIf="places.length > 3">Fourth place is {{details.playerNames[places[3].id]}} with {{(places[3].relToPar > 0) ? places[3].relToPar + " under par" : places[3].relToPar*-1 + " over par"}}</h3>
+  <h2>The total yards was {{yardTotal}}</h2>
+  <h2>The total par was {{parTotal}}</h2>
 </mat-card>
